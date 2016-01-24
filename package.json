@@ -1,0 +1,26 @@
+{
+  "name": "discordmixer",
+  "version": "0.0.1",
+  "description": "Discord music playing bot.",
+  "main": "dmixer.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://gitlab.com/subnomo/discordmixer.git"
+  },
+  "keywords": [
+    "discord",
+    "music",
+    "bot",
+    "dj",
+    "discordmixer"
+  ],
+  "author": "subnomo (Alex Taylor)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://gitlab.com/subnomo/discordmixer/issues"
+  },
+  "homepage": "https://gitlab.com/subnomo/discordmixer#README",
+  "dependencies": {
+    "discord.js": "^5.3.2"
+  }
+}
