@@ -45,7 +45,7 @@ function add(message: any): string {
     if (mArray.length < 3)
         return "Error: Expected 3 arguments, got " + mArray.length;
     
-    var song: Song = Fetch(mArray[2]);
+    var song: Song = Fetch(mArray[2], message.author);
     if (song === null)
         return "Sorry, discordmixer doesn't support that source.";
     

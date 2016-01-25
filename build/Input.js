@@ -1,3 +1,16 @@
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, Promise, generator) {
+    return new Promise(function (resolve, reject) {
+        generator = generator.call(thisArg, _arguments);
+        function cast(value) { return value instanceof Promise && value.constructor === Promise ? value : new Promise(function (resolve) { resolve(value); }); }
+        function onfulfill(value) { try { step("next", value); } catch (e) { reject(e); } }
+        function onreject(value) { try { step("throw", value); } catch (e) { reject(e); } }
+        function step(verb, value) {
+            var result = generator[verb](value);
+            result.done ? resolve(result.value) : cast(result.value).then(onfulfill, onreject);
+        }
+        step("next", void 0);
+    });
+};
 var Parse = require('./utils/ParseCommand');
 var Command = require('./commands');
 var Fetch = require('./Fetch');
@@ -37,7 +50,7 @@ function add(message) {
     var mArray = message.content.split(" ");
     if (mArray.length < 3)
         return "Error: Expected 3 arguments, got " + mArray.length;
-    var song = Fetch(mArray[2]);
+    var song = Fetch(mArray[2], message.author);
     if (song === null)
         return "Sorry, discordmixer doesn't support that source.";
     queue.add(song);

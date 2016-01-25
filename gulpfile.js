@@ -12,7 +12,8 @@ gulp.task('ts-compile', function () {
         .pipe(ts({
             module: 'commonjs',
             declaration: true,
-            removeComments: true
+            removeComments: true,
+            target: 'es6'
         }))
         .pipe(gulp.dest('build'));
 });

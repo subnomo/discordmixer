@@ -4,6 +4,7 @@ interface Song {
     skip: boolean;
     requester?: string;
     url: string;
+    thumb?: string;
 }
 
 export = Song;

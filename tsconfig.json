@@ -5,7 +5,8 @@
         "removeComments": true,
         "preserveConstEnums": true,
         "out": "build/dmixer.js",
-        "sourceMap": true
+        "sourceMap": false,
+        "target": "es6"
     },
     "exclude": [
         "node_modules"

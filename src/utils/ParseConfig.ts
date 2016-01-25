@@ -1,4 +1,5 @@
 /// <reference path="../../tools/typings/node/node.d.ts" />
+"use strict";
 import fs = require('fs');
 
 class ParseConfig {

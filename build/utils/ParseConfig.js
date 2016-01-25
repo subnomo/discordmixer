@@ -1,6 +1,7 @@
+"use strict";
 var fs = require('fs');
-var ParseConfig = (function () {
-    function ParseConfig() {
+class ParseConfig {
+    constructor() {
         var data = fs.readFileSync('config.json', 'utf8');
         var json = JSON.parse(data);
         this.email = json.email;
@@ -9,6 +10,5 @@ var ParseConfig = (function () {
         this.botName = json.botname;
         this.youtubeAPIKey = json.YOUTUBE_API_KEY;
     }
-    return ParseConfig;
-})();
+}
 module.exports = ParseConfig;

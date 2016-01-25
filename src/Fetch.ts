@@ -18,11 +18,18 @@ function matchInArray(str: string, expressions: RegExp[]) {
     return false;
 }
 
-function Fetch(url: string): Song {
+function Fetch(url: string, user: any): Song {
     // Decide which service user wants to play from
     if (matchInArray(url, youtubePatterns)) {
-        var song: Song = Youtube(url);
-        return song;
+        var yt = new Youtube();
+        yt.getSong(url, user);
+        
+        /*return {
+            title: song.title,
+            skip: song.skip,
+            requester: user.username,
+            url: song.url
+        }*/
     }
     
     return null;
