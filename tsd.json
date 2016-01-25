@@ -6,10 +6,16 @@
   "bundle": "tools/typings/tsd.d.ts",
   "installed": {
     "node/node.d.ts": {
-      "commit": "7fffbd3e040a93c244777e3be04cd6223ac69301"
+      "commit": "7b3d5a6ea5acda4a81f71309f1cc62354e63b681"
     },
     "nedb/nedb.d.ts": {
       "commit": "5e269cec94f666c298625948c5c5ff8224846e33"
+    },
+    "request/request.d.ts": {
+      "commit": "7b3d5a6ea5acda4a81f71309f1cc62354e63b681"
+    },
+    "form-data/form-data.d.ts": {
+      "commit": "7b3d5a6ea5acda4a81f71309f1cc62354e63b681"
     }
   }
 }

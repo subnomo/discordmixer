@@ -46,6 +46,8 @@ function add(message: any): string {
         return "Error: Expected 3 arguments, got " + mArray.length;
     
     var song: Song = Fetch(mArray[2]);
+    if (song === null)
+        return "Sorry, discordmixer doesn't support that source.";
     
     queue.add(song);
 }
