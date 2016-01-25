@@ -24,7 +24,8 @@
   },
   "homepage": "https://gitlab.com/subnomo/discordmixer#README",
   "dependencies": {
-    "discord.js": "^5.3.2"
+    "discord.js": "^5.3.2",
+    "nedb": "^1.7.1"
   },
   "devDependencies": {
     "gulp": "^3.9.0",

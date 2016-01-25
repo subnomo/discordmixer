@@ -1,8 +1,13 @@
 var Discord = require('discord.js');
+var Config = require('./utils/ParseConfig');
+var Input = require('./Input');
+var config = new Config();
 var bot = new Discord.Client();
 bot.on('message', function (message) {
-    if (message.content === 'ping') {
-        bot.reply(message, 'pong');
-    }
+    if (config.botName === message.author.username)
+        return;
+    var response = Input(message);
+    if (response !== null && response !== "")
+        bot.reply(message, response);
 });
-bot.login('email', 'password');
+bot.login(config.email, config.password);

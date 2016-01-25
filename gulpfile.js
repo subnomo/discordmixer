@@ -11,7 +11,8 @@ gulp.task('ts-compile', function () {
     return gulp.src('src/**/*.ts')
         .pipe(ts({
             module: 'commonjs',
-            declaration: true
+            declaration: true,
+            removeComments: true
         }))
         .pipe(gulp.dest('build'));
 });
