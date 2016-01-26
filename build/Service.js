@@ -1,8 +1,8 @@
-"use strict";
 var Config = require('./utils/ParseConfig');
-class Service {
-    constructor() {
+var Service = (function () {
+    function Service() {
         this.config = new Config();
     }
-}
+    return Service;
+})();
 module.exports = Service;

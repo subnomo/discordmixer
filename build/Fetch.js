@@ -1,16 +1,3 @@
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, Promise, generator) {
-    return new Promise(function (resolve, reject) {
-        generator = generator.call(thisArg, _arguments);
-        function cast(value) { return value instanceof Promise && value.constructor === Promise ? value : new Promise(function (resolve) { resolve(value); }); }
-        function onfulfill(value) { try { step("next", value); } catch (e) { reject(e); } }
-        function onreject(value) { try { step("throw", value); } catch (e) { reject(e); } }
-        function step(verb, value) {
-            var result = generator[verb](value);
-            result.done ? resolve(result.value) : cast(result.value).then(onfulfill, onreject);
-        }
-        step("next", void 0);
-    });
-};
 var Youtube = require('./services/Youtube');
 var youtubePatterns = [
     /https?:\/\/www\.youtube\.com\/watch\?v=([\w-]+)(\&t=\d*m?\d*s?)?/,
@@ -26,10 +13,17 @@ function matchInArray(str, expressions) {
             return true;
     return false;
 }
-function Fetch(url, user) {
+function Fetch(url, user, callback) {
     if (matchInArray(url, youtubePatterns)) {
         var yt = new Youtube();
-        yt.getSong(url, user);
+        yt.getSong(url, user, function (song) {
+            callback({
+                title: song.title,
+                skip: song.skip,
+                requester: user.username,
+                url: song.url
+            });
+        });
     }
     return null;
 }

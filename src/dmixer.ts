@@ -8,8 +8,7 @@ var bot = new Discord.Client();
 bot.on('message', function (message: any) {
     if (config.botName === message.author.username) return;
     
-    var response: string = Input(message);
-    if (response !== null && response !== "") bot.reply(message, response);
+    Input(message, bot);
 });
 
 bot.login(config.email, config.password);

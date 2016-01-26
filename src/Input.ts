@@ -5,75 +5,77 @@ import Queue = require('./Queue');
 import Song = require('./Song');
 
 var queue = new Queue();
+var bot: any;
 
-function Input(message: any): string {
+function Input(message: any, dbot: any): void {
+    bot = dbot;
+    
     var cmd: Command = Parse(message.content);
     if (cmd === -1) return null;
     
-    var res: string = "";
-    
     switch (cmd.toString()) {
         case Command[Command.add]:
-            res = add(message);
+            add(message);
             break;
         case Command[Command.pause]:
-            res = pause(message);
+            pause(message);
             break;
         case Command[Command.resume]:
-            res = resume(message);
+            resume(message);
             break;
         case Command[Command.skip]:
-            res = skip(message);
+            skip(message);
             break;
         case Command[Command.shuffle]:
-            res = shuffle(message);
+            shuffle(message);
             break;
         case Command[Command.volume]:
-            res = volume(message);
+            volume(message);
             break;
         case Command[Command.help]:
-            res = help(message);
+            help(message);
             break;
     }
-    
-    return res;
 }
 
-function add(message: any): string {
+function add(message: any): void {
     var mArray: string[] = message.content.split(" ");
     
     if (mArray.length < 3)
-        return "Error: Expected 3 arguments, got " + mArray.length;
+        bot.reply(message, "Error: Expected 3 arguments, got 2.");
     
-    var song: Song = Fetch(mArray[2], message.author);
-    if (song === null)
-        return "Sorry, discordmixer doesn't support that source.";
-    
-    queue.add(song);
+    Fetch(mArray[2], message.author, (song: Song) => {
+        if (song === null)
+            bot.reply(message,
+                "Sorry, discordmixer doesn't support that source.");
+        
+        queue.add(song);
+        bot.reply(message, "Added " + song.title + " to the queue.");
+    });
 }
 
-function pause(message: any): string {
-    return "Not implemented.";
+function pause(message: any): void {
+    return;
 }
 
-function resume(message: any): string {
-    return "Not implemented.";
+function resume(message: any): void {
+    return;
 }
 
-function skip(message: any): string {
-    return "Not implemented.";
+function skip(message: any): void {
+    return;
 }
 
-function shuffle(message: any): string {
-    return "Not implemented.";
+function shuffle(message: any): void {
+    return;
 }
 
-function volume(message: any): string {
-    return "Not implemented.";
+function volume(message: any): void {
+    return;
 }
 
-function help(message: any): string {
-    return "Not implemented.";
+function help(message: any): void {
+    return;
 }
 
 export = Input;

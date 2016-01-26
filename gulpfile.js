@@ -13,7 +13,7 @@ gulp.task('ts-compile', function () {
             module: 'commonjs',
             declaration: true,
             removeComments: true,
-            target: 'es6'
+            target: 'es5'
         }))
         .pipe(gulp.dest('build'));
 });

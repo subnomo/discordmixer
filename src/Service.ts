@@ -1,4 +1,3 @@
-"use strict";
 import Config = require('./utils/ParseConfig');
 import Song = require('./Song');
 
@@ -9,7 +8,7 @@ abstract class Service {
         this.config = new Config();
     }
     
-    public abstract getSong(url: string, user: any): any;
+    public abstract getSong(url: string, user: any, callback: any): any;
     
     public abstract getPlaylist(url: string, user: any): any;
 }
