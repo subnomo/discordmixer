@@ -49,8 +49,9 @@ function add(message: any): void {
             bot.reply(message,
                 "Sorry, discordmixer doesn't support that source.");
         
-        queue.add(song);
-        bot.reply(message, "Added " + song.title + " to the queue.");
+        queue.add(song, (doc: any) => {
+            bot.reply(message, "Added \"" + song.title + "\" to the queue.");
+        });
     });
 }
 
@@ -63,7 +64,18 @@ function resume(message: any): void {
 }
 
 function skip(message: any): void {
-    return;
+    queue.pop((doc: any) => {
+        var song: Song = doc[0];
+        if (doc.length === 0) {
+            bot.reply(message, "Nothing to skip.");
+            return;
+        }
+        
+        song.skip = true;
+        queue.update(song, (numReplaced: number) => {
+            bot.reply(message, "Skipped \"" + song.title + "\".");
+        });
+    });
 }
 
 function shuffle(message: any): void {

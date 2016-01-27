@@ -23,13 +23,15 @@ class Youtube extends Service {
             var song: Song = {
                 title: json.title,
                 skip: false,
-                url: url
+                url: url,
+                added: new Date()
             };
         
             callback(song);
         });
     }
     
+    // TODO: Implement playlist
     public getPlaylist(url: string, user: any): Song[] {
         return null;
     }

@@ -22,7 +22,8 @@ var Youtube = (function (_super) {
             var song = {
                 title: json.title,
                 skip: false,
-                url: url
+                url: url,
+                added: new Date()
             };
             callback(song);
         });

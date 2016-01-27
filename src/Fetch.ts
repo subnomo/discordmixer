@@ -27,7 +27,8 @@ function Fetch(url: string, user: any, callback: any): void {
                 title: song.title,
                 skip: song.skip,
                 requester: user.username,
-                url: song.url
+                url: song.url,
+                added: song.added
             });
         });
     }
