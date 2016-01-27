@@ -5,7 +5,7 @@
   "main": "build/dmixer.js",
   "repository": {
     "type": "git",
-    "url": "git+https://gitlab.com/subnomo/discordmixer.git"
+    "url": "git+https://github.com/subnomo/discordmixer.git"
   },
   "keywords": [
     "discord",
@@ -17,12 +17,12 @@
   "author": "subnomo (Alex Taylor)",
   "license": "MIT",
   "bugs": {
-    "url": "https://gitlab.com/subnomo/discordmixer/issues"
+    "url": "https://github.com/subnomo/discordmixer/issues"
   },
   "scripts": {
     "start": "node build/dmixer.js"
   },
-  "homepage": "https://gitlab.com/subnomo/discordmixer#README",
+  "homepage": "https://github.com/subnomo/discordmixer#README",
   "dependencies": {
     "discord.js": "^5.3.2",
     "nedb": "^1.7.1",
