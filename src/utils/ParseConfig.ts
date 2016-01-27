@@ -6,6 +6,8 @@ class ParseConfig {
     public password: string;
     public owner: string;
     public botName: string;
+    public serverName: string;
+    public channelName: string;
     public youtubeAPIKey: string;
 
     constructor() {
@@ -16,6 +18,8 @@ class ParseConfig {
         this.password = json.password;
         this.owner = json.owner;
         this.botName = json.botname;
+        this.serverName = json.server_name;
+        this.channelName = json.channel_name;
         this.youtubeAPIKey = json.YOUTUBE_API_KEY;
     }
 }

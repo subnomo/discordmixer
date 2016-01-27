@@ -1,6 +1,8 @@
 import Song = require('./Song');
 import Youtube = require('./services/Youtube');
 
+var yt = new Youtube();
+
 // Youtube url regex patterns (thanks to @matthieugrieger, creator of mumbledj)
 var youtubePatterns: RegExp[] = [
 	/https?:\/\/www\.youtube\.com\/watch\?v=([\w-]+)(\&t=\d*m?\d*s?)?/,
@@ -18,22 +20,26 @@ function matchInArray(str: string, expressions: RegExp[]) {
     return false;
 }
 
-function Fetch(url: string, user: any, callback: any): void {
+export function fetch(url: string, user: any, callback: any): void {
     // Decide which service user wants to play from
     if (matchInArray(url, youtubePatterns)) {
-        var yt = new Youtube();
         yt.getSong(url, user, (song: Song) => {
             callback({
                 title: song.title,
                 skip: song.skip,
+                downloaded: song.downloaded,
+                playing: song.playing,
                 requester: user.username,
                 url: song.url,
                 added: song.added
             });
         });
     }
-    
-    return null;
 }
 
-export = Fetch;
+export function download(song: Song, callback?: any): void {
+    if (matchInArray(song.url, youtubePatterns)) {
+        if (callback) yt.downloadSong(song, callback);
+        else yt.downloadSong(song);
+    }
+}

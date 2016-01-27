@@ -16,10 +16,18 @@ class Queue {
         });
     }
     
-    public get(callback: any): void {
-        this.db.find({}).sort({ added: 1 }).exec((err: any, docs: any) => {
+    public get(query: any, callback: any): void {
+        this.db.find(query).sort({ added: 1 }).exec((err: any, docs: any) => {
             if (err) return console.error(err);
             callback(docs);
+        });
+    }
+    
+    public first(callback: any): void {
+        this.db.find({}).sort({ added: 1 }).limit(1)
+            .exec((err: any, doc: any) => {
+            if (err) return console.error(err);
+            callback(doc);
         });
     }
     
@@ -36,6 +44,14 @@ class Queue {
             (err: any, numReplaced: number, upsert: any) => {
             if (err) return console.error(err);
             if (callback) callback(numReplaced, upsert);
+        });
+    }
+    
+    public remove(doc: any, callback?: any): void {
+        this.db.remove({ _id: doc._id }, {},
+            (err: any, numRemoved: number) => {
+            if (err) return console.error(err);
+            if (callback) callback(numRemoved);
         });
     }
 }
