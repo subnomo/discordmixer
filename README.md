@@ -2,6 +2,15 @@
 
 A music playing bot for discord.
 
+## Installation
+
+Requirements: Node.js, ffmpeg
+
+1. Extract the latest [release](https://github.com/subnomo/discordmixer/releases).
+2. In the command line, run `npm install --production`
+3. Configure options in config.json
+4. Run `node build/dmixer.js`
+
 ## TODO
 
 - [x] Parse commands
