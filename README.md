@@ -6,5 +6,5 @@ A music playing bot for discord.
 
 - [x] Parse commands
 - [x] Fetch song given name
-- [ ] Stream song
+- [x] Stream song
 - [ ] Respect server roles

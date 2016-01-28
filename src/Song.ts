@@ -8,6 +8,7 @@ interface Song {
     url: string;
     thumb?: string;
     added: Date;
+    file?: string;
 }
 
 export = Song;

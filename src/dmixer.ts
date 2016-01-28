@@ -1,9 +1,9 @@
 var Discord = require('discord.js');
 import Config = require('./utils/ParseConfig');
 import Input = require('./Input');
+import bot = require('./bot');
 
-var config = new Config();
-var bot = new Discord.Client();
+var config = Config.config;
 
 bot.on('ready', () => {
     var channel = bot.servers.get('name', config.serverName)
@@ -17,7 +17,7 @@ bot.on('ready', () => {
 bot.on('message', (message: any) => {
     if (config.botName === message.author.username) return;
     
-    Input(message, bot);
+    Input(message);
 });
 
 bot.login(config.email, config.password);

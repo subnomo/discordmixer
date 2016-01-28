@@ -4,7 +4,7 @@ import fs = require('fs');
 var ytdl = require('ytdl-core');
 
 class Youtube extends Service {
-    public getSong(url: string, user: any, callback: any): void {
+    public getSong(url: string, callback: any): void {
         ytdl.getInfo(url, (err: any, info: any) => {
             var song: Song = {
                 title: info.title,
@@ -12,6 +12,7 @@ class Youtube extends Service {
                 downloaded: false,
                 playing: false,
                 url: url,
+                thumb: info.iurl,
                 added: new Date()
             };
         
@@ -28,7 +29,7 @@ class Youtube extends Service {
     }
     
     // TODO: Implement playlist
-    public getPlaylist(url: string, user: any, callback: any): void {
+    public getPlaylist(url: string, callback: any): void {
         return null;
     }
 }

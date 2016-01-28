@@ -5,5 +5,5 @@
     "botname": "bot_discord_username_here",
     "server_name": "your_server_name",
     "channel_name": "your_channel_name",
-    "YOUTUBE_API_KEY": "your_api_key_here"
+    "userskip": false
 }

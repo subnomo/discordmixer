@@ -1,14 +1,14 @@
 /// <reference path="../../tools/typings/node/node.d.ts" />
 import fs = require('fs');
 
-class ParseConfig {
+export class ParseConfig {
     public email: string;
     public password: string;
     public owner: string;
     public botName: string;
     public serverName: string;
     public channelName: string;
-    public youtubeAPIKey: string;
+    public userSkip: boolean;
 
     constructor() {
         var data: any = fs.readFileSync('config.json', 'utf8');
@@ -20,8 +20,8 @@ class ParseConfig {
         this.botName = json.botname;
         this.serverName = json.server_name;
         this.channelName = json.channel_name;
-        this.youtubeAPIKey = json.YOUTUBE_API_KEY;
+        this.userSkip = json.userskip;
     }
 }
 
-export = ParseConfig;
+export var config = new ParseConfig();

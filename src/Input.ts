@@ -7,45 +7,12 @@ import Fetch = require('./Fetch');
 import Queue = require('./Queue');
 import Song = require('./Song');
 import Play = require('./Play');
+import bot = require('./bot');
 
-var queue = new Queue();
-var config = new Config();
-var bot: any;
+var config = Config.config;
+var queue = Queue.queue;
 
-function Input(message: any, dbot: any): void {
-    bot = dbot;
-    Play(queue, bot);
-    
-    var cmd: Command = Parse(message.content);
-    if (cmd === -1) return null;
-    
-    switch (cmd.toString()) {
-        case Command[Command.add]:
-            add(message);
-            break;
-        case Command[Command.pause]:
-            pause(message);
-            break;
-        case Command[Command.resume]:
-            resume(message);
-            break;
-        case Command[Command.skip]:
-            skip(message);
-            break;
-        case Command[Command.shuffle]:
-            shuffle(message);
-            break;
-        case Command[Command.volume]:
-            volume(message);
-            break;
-        case Command[Command.help]:
-            help(message);
-            break;
-        case Command[Command.kill]:
-            kill(message);
-            break;
-    }
-}
+Play();
 
 function add(message: any): void {
     var mArray: string[] = message.content.split(" ");
@@ -60,6 +27,13 @@ function add(message: any): void {
         
         queue.add(song, (doc: any) => {
             bot.reply(message, "Added \"" + song.title + "\" to the queue.");
+            
+            Fetch.download(song, (file: any) => {
+                song.downloaded = true;
+                song.file = file;
+                
+                queue.update(song);
+            });
         });
     });
 }
@@ -73,15 +47,34 @@ function resume(message: any): void {
 }
 
 function skip(message: any): void {
+    if (!config.userSkip && message.author.username !== config.owner)
+        return;
+        
+    queue.first((doc: any) => {
+        var song: Song = doc[0];
+        if (doc.length === 0) return bot.reply(message, "Nothing to skip.");
+        
+        if (song.playing) {
+            queue.remove(doc, (numRemoved: number) => {
+                bot.reply(message, "Skipping \"" + song.title + "\".");
+                bot.voiceConnection.stopPlaying();
+            });
+        }
+    });
+}
+
+function wrongsong(message: any): void { 
     queue.pop((doc: any) => {
         var song: Song = doc[0];
         if (doc.length === 0 || song.requester !== message.author.username)
             return bot.reply(message, "Nothing to skip.");
         
-        song.skip = true;
-        queue.update(song, (numReplaced: number) => {
-            bot.reply(message, "Skipped \"" + song.title + "\".");
-        });
+        if (!song.playing) {
+            song.skip = true;
+            queue.update(song, (numReplaced: number) => {
+                bot.reply(message, "\"" + song.title + "\" removed from queue.");
+            });
+        }
     });
 }
 
@@ -104,6 +97,41 @@ function kill(message: any): void {
             if (err) console.error(err);
             process.exit();
         });
+    }
+}
+
+function Input(message: any): void {
+    var cmd: Command = Parse(message.content);
+    if (cmd === -1) return null;
+    
+    switch (cmd.toString()) {
+        case Command[Command.add]:
+            add(message);
+            break;
+        case Command[Command.pause]:
+            pause(message);
+            break;
+        case Command[Command.resume]:
+            resume(message);
+            break;
+        case Command[Command.skip]:
+            skip(message);
+            break;
+        case Command[Command.wrongsong]:
+            wrongsong(message);
+            break;
+        case Command[Command.shuffle]:
+            shuffle(message);
+            break;
+        case Command[Command.volume]:
+            volume(message);
+            break;
+        case Command[Command.help]:
+            help(message);
+            break;
+        case Command[Command.kill]:
+            kill(message);
+            break;
     }
 }
 

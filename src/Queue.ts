@@ -2,7 +2,7 @@
 import Datastore = require('nedb');
 import Song = require('./Song');
 
-class Queue {
+export class Queue {
     private db: Datastore;
     
     constructor() {
@@ -56,4 +56,4 @@ class Queue {
     }
 }
 
-export = Queue;
+export var queue = new Queue();

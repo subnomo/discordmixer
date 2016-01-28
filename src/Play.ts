@@ -2,17 +2,14 @@ import fs = require('fs');
 import Queue = require('./Queue');
 import Song = require('./Song');
 import Fetch = require('./Fetch');
+import bot = require('./bot');
 
-var bot: any;
-var queue: Queue;
+var queue = Queue.queue;
 
 // Main loop
-function Play(dqueue: Queue, dbot: any): void {
-    bot = dbot;
-    queue = dqueue;
-    
+function Play(): void {
     setInterval(() => {
-        queue.get({ playing: false }, (docs: any) => {
+        queue.get({ downloaded: true }, (docs: any) => {
             if (docs.length > 0) Stream();
         });
     }, 1000);
@@ -21,11 +18,20 @@ function Play(dqueue: Queue, dbot: any): void {
 function Stream(): void {
     queue.first((doc: any) => {
         var song: Song = doc[0];
-        Fetch.download(song, (file: any) => {
-            console.log("Playing '" + song.title + "'...");
-            bot.voiceConnection.playFile(file);
+        if (song.playing) return;
+        if (song.skip) return queue.remove(doc[0]);
+
+        //bot.sendMessage(messageObj, "Playing \"" + song.title + "\"");
+        song.playing = true;
+        queue.update(song);
+
+        bot.voiceConnection.playFile(song.file, (err: any, stream: any) => {
+            if (err) return console.error(err);
+
+            stream.on('end', () => {
+                queue.remove(doc[0]);
+            });
         });
-        queue.remove(doc[0]);
     });
 }
 
