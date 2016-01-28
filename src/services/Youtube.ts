@@ -15,17 +15,30 @@ class Youtube extends Service {
                 thumb: info.iurl,
                 added: new Date()
             };
-        
+
             callback(song);
         });
     }
-    
+
     public downloadSong(song: Song, callback?: any): void {
-        var file = "./songs/" + song.title + ".m4a";
-        ytdl(song.url, { quality: 141 })
+        var title = new Buffer(song.title).toString('base64');
+        var file = "./songs/" + title + ".m4a";
+        var dlStream = ytdl(song.url, { quality: 141 })
             .on('end', () => {
                 if (callback) callback(file);
-            }).pipe(fs.createWriteStream(file));
+            })
+            .on('error', (err: any) => {
+                // In case format 141 is unavailable, we have a backup
+                dlStream.destroy();
+                
+                file = "./songs/" + title + ".mp4";
+
+                ytdl(song.url, { quality: 22 })
+                    .on('end', () => {
+                        if (callback) callback(file);
+                    }).pipe(fs.createWriteStream(file));
+            })
+            .pipe(fs.createWriteStream(file));
     }
     
     // TODO: Implement playlist

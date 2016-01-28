@@ -1,6 +1,6 @@
 {
   "name": "discordmixer",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Discord music playing bot.",
   "main": "build/dmixer.js",
   "repository": {

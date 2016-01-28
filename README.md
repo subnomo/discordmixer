@@ -11,6 +11,10 @@ Requirements: Node.js, ffmpeg
 3. Configure options in config.json
 4. Run `node build/dmixer.js`
 
+## Supported sites
+
+- Youtube
+
 ## TODO
 
 - [x] Parse commands
