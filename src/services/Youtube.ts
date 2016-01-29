@@ -6,6 +6,8 @@ var ytdl = require('ytdl-core');
 class Youtube extends Service {
     public getSong(url: string, callback: any): void {
         ytdl.getInfo(url, (err: any, info: any) => {
+            if (err) return console.error(err);
+
             var song: Song = {
                 title: info.title,
                 skip: false,
@@ -30,13 +32,25 @@ class Youtube extends Service {
             .on('error', (err: any) => {
                 // In case format 141 is unavailable, we have a backup
                 dlStream.destroy();
-                
-                file = "./songs/" + title + ".mp4";
 
-                ytdl(song.url, { quality: 22 })
+                file = "./songs/" + title + ".webm";
+
+                var dlStream2 = ytdl(song.url, { quality: 251 })
                     .on('end', () => {
                         if (callback) callback(file);
-                    }).pipe(fs.createWriteStream(file));
+                    })
+                    .on('error', (err: any) => {
+                        // As a last resort download the video file as well
+                        dlStream2.destroy();
+                        
+                        file = "./songs/" + title + ".mp4";
+
+                        ytdl(song.url, { quality: 18 })
+                            .on('end', () => {
+                                if (callback) callback(file);
+                            }).pipe(fs.createWriteStream(file));
+                    })
+                    .pipe(fs.createWriteStream(file));
             })
             .pipe(fs.createWriteStream(file));
     }
