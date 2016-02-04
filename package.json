@@ -26,6 +26,7 @@
   "dependencies": {
     "discord.js": "^5.3.2",
     "nedb": "^1.7.1",
+    "request": "^2.69.0",
     "rimraf": "^2.5.1",
     "ytdl-core": "^0.7.9"
   },

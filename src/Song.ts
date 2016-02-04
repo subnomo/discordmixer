@@ -6,6 +6,7 @@ interface Song {
     playing: boolean;
     requester?: string;
     url: string;
+    streamable_url?: string;
     thumb?: string;
     added: Date;
     file?: string;

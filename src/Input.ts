@@ -22,7 +22,7 @@ function add(message: any): void {
     
     Fetch.fetch(mArray[2], message.author, (song: Song) => {
         if (song === null)
-            bot.reply(message,
+            return bot.reply(message,
                 "Sorry, discordmixer doesn't support that source.");
         
         queue.add(song, (doc: any) => {

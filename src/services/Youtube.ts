@@ -23,8 +23,8 @@ class Youtube extends Service {
     }
 
     public downloadSong(song: Song, callback?: any): void {
-        var title = new Buffer(song.title).toString('base64');
-        var file = "./songs/" + title + ".m4a";
+        var title: string = new Buffer(song.title).toString('base64');
+        var file: string = "./songs/" + title + ".m4a";
         var dlStream = ytdl(song.url, { quality: 141 })
             .on('end', () => {
                 if (callback) callback(file);
