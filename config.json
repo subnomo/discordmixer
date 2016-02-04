@@ -5,5 +5,6 @@
     "botname": "bot_discord_username_here",
     "server_name": "your_server_name",
     "channel_name": "your_channel_name",
-    "userskip": false
+    "userskip": false,
+    "SOUNDCLOUD_ID": "your_soundcloud_client_id"
 }
