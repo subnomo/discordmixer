@@ -14,6 +14,7 @@ Requirements: Node.js, ffmpeg
 ## Supported sites
 
 - Youtube
+- Soundcloud
 
 ## TODO
 
@@ -21,3 +22,11 @@ Requirements: Node.js, ffmpeg
 - [x] Fetch song given name
 - [x] Stream song
 - [ ] Respect server roles
+- [ ] Playlists
+- [x] Soundcloud support
+- [ ] Spotify support
+- [ ] Add songs via song name
+
+# License
+
+MIT
