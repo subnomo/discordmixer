@@ -14,6 +14,7 @@ Requirements: Node.js, ffmpeg
 ## Supported sites
 
 - Youtube
+- Soundcloud
 
 ## TODO
 

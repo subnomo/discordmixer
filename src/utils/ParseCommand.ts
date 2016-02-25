@@ -9,7 +9,6 @@ function ParseCommand(message: string): Command {
     // Check to see if command given by user exists
     for (var member in Command) {
         if (mArray[1] === member) {
-
             return member;
         }
     }
