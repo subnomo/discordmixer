@@ -1,6 +1,6 @@
 import Command = require('../commands');
 
-function ParseCommand(message: string): Command {
+function ParseCommand(message: string): any {
     var mArray: string[] = message.split(" ");
 
     if (mArray[0] !== "!dmix" || mArray.length < 2) return -1;
