@@ -1,4 +1,3 @@
-/// <reference path="../../tools/typings/node/node.d.ts" />
 import Command = require('../commands');
 
 function ParseCommand(message: string): Command {

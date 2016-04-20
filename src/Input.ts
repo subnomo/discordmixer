@@ -1,4 +1,3 @@
-/// <reference path="../tools/typings/rimraf/rimraf.d.ts" />
 import rimraf = require('rimraf');
 import Parse = require('./utils/ParseCommand');
 import Config = require('./utils/ParseConfig');

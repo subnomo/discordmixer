@@ -1,4 +1,3 @@
-/// <reference path="../../tools/typings/node/node.d.ts" />
 import fs = require('fs');
 
 export class ParseConfig {
