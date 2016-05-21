@@ -1,0 +1,10 @@
+{
+  "name": "discordmixer",
+  "ambientDependencies": {
+    "form-data": "registry:dt/form-data#0.0.0+20160316155526",
+    "nedb": "registry:dt/nedb#0.0.0+20160317120654",
+    "node": "registry:dt/node#4.0.0+20160412142033",
+    "request": "registry:dt/request#0.0.0+20160316155526",
+    "rimraf": "registry:dt/rimraf#0.0.0+20160317120654"
+  }
+}

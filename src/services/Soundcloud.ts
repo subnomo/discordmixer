@@ -1,4 +1,3 @@
-/// <reference path="../../tools/typings/request/request.d.ts" />
 import request = require('request');
 import Song = require('../Song');
 import Service = require('../Service');

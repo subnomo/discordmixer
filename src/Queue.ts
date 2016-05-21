@@ -1,4 +1,3 @@
-/// <reference path="../tools/typings/nedb/nedb.d.ts" />
 import Datastore = require('nedb');
 import Song = require('./Song');
 

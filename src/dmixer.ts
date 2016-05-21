@@ -1,3 +1,4 @@
+/// <reference path="../typings/main.d.ts" />
 var Discord = require('discord.js');
 import Config = require('./utils/ParseConfig');
 import Input = require('./Input');
