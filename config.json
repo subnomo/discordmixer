@@ -1,6 +1,5 @@
 {
-    "email": "your_discord_email_here",
-    "password": "your_discord_password_here",
+    "bot_token": "your_bot_token_here",
     "owner": "your_discord_username_here",
     "botname": "bot_discord_username_here",
     "server_name": "your_server_name",

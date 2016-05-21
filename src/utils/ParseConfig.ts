@@ -1,8 +1,7 @@
 import fs = require('fs');
 
 export class ParseConfig {
-    public email: string;
-    public password: string;
+    public botToken: string;
     public owner: string;
     public botName: string;
     public serverName: string;
@@ -14,8 +13,7 @@ export class ParseConfig {
         var data: any = fs.readFileSync('config.json', 'utf8');
         var json: any = JSON.parse(data);
 
-        this.email = json.email;
-        this.password = json.password;
+        this.botToken = json.bot_token;
         this.owner = json.owner;
         this.botName = json.botname;
         this.serverName = json.server_name;
