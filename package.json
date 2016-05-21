@@ -28,11 +28,11 @@
     "nedb": "^1.8.0",
     "request": "^2.72.0",
     "rimraf": "^2.5.2",
-    "ytdl-core": "^0.7.13"
+    "ytdl-core": "^0.7.15"
   },
   "devDependencies": {
     "gulp": "^3.9.1",
-    "gulp-tslint": "^4.3.5",
+    "gulp-tslint": "^5.0.0",
     "gulp-typescript": "^2.13.0",
     "gulp-watch": "^4.3.5",
     "tslint": "^3.7.4",
