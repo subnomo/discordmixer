@@ -18,3 +18,5 @@ node_modules
 
 build
 songs
+dist
+config.json
