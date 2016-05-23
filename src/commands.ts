@@ -1,5 +1,5 @@
 enum Command {
-    add, pause, resume,
+    add, pause, play,
     skip, shuffle, volume,
     help, kill, current,
     wrongsong

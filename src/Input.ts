@@ -38,11 +38,11 @@ function add(message: any): void {
 }
 
 function pause(message: any): void {
-    return;
+    bot.voiceConnection.pause();
 }
 
-function resume(message: any): void {
-    return;
+function play(message: any): void {
+    bot.voiceConnection.resume();
 }
 
 function skip(message: any): void {
@@ -110,8 +110,8 @@ function Input(message: any): void {
         case Command[Command.pause]:
             pause(message);
             break;
-        case Command[Command.resume]:
-            resume(message);
+        case Command[Command.play]:
+            play(message);
             break;
         case Command[Command.skip]:
             skip(message);
