@@ -24,8 +24,8 @@ Requirements: Node.js, ffmpeg
 - [ ] Respect server roles
 - [ ] Playlists
 - [x] Soundcloud support
-- [ ] Spotify support
 - [ ] Add songs via song name
+- [ ] Google Play Music support
 
 # License
 
