@@ -8,6 +8,7 @@ export class ParseConfig {
     public channelName: string;
     public userSkip: boolean;
     public soundcloudID: string;
+    public youtubeAPIKey: string;
 
     constructor() {
         var data: any = fs.readFileSync('config.json', 'utf8');
@@ -15,11 +16,12 @@ export class ParseConfig {
 
         this.botToken = json.bot_token;
         this.owner = json.owner;
-        this.botName = json.botname;
+        this.botName = json.bot_name;
         this.serverName = json.server_name;
         this.channelName = json.channel_name;
-        this.userSkip = json.userskip;
-        this.soundcloudID = json.SOUNDCLOUD_ID;
+        this.userSkip = json.user_skip;
+        this.soundcloudID = json.soundcloud_client_id;
+        this.youtubeAPIKey = json.youtube_api_key;
     }
 }
 
